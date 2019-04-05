@@ -1,49 +1,37 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" style="background-color:withe">
     <mt-header fixed title="One Of Casso`s Objects"></mt-header>
 
-    <h3>12313</h3>
+     <transition mode="out-in">
+        <router-view></router-view>
+     </transition>
 
     <nav class="mui-bar mui-bar-tab">
-      <a class="mui-tab-item mui-active" href="#tabbar">
+      <router-link class="mui-tab-item" to="/home">
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-chat">
+      </router-link>
+      <router-link class="mui-tab-item" to="/member">
         <span class="mui-icon mui-icon-email">
-          <span class="mui-badge">9</span>
+          
         </span>
-        <span class="mui-tab-label">消息</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-contact">
-        <span class="mui-icon mui-icon-contact"></span>
-        <span class="mui-tab-label">通讯录</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-map">
-        <span class="mui-icon mui-icon-gear"></span>
-        <span class="mui-tab-label">设置</span>
-      </a>
+        <span class="mui-tab-label">会员</span>
+      </router-link>
+
+      <router-link class="mui-tab-item" to="/shopcar">
+        <span class="mui-icon mui-icon-contact">
+        <span class="mui-badge">0</span></span>
+        <span class="mui-tab-label">购物车</span>
+      </router-link>
+
+      <router-link class="mui-tab-item" to="search">
+        <span class="mui-icon mui-icon-contact">
+        </span>
+        <span class="mui-tab-label">搜索</span>
+      </router-link>
     </nav>
-sss
-    <h5>有底色按钮：</h5>
-				<button type="button" class="mui-btn">
-					默认
-				</button>
-				<div class="mui-btn mui-btn-primary">
-					蓝色
-				</div>
-				<span class="mui-btn mui-btn-success">
-					绿色
-				</span>
-				<button type="button" class="mui-btn mui-btn-warning">
-					黄色
-				</button>
-				<button type="button" class="mui-btn mui-btn-danger">
-					红色
-				</button>
-				<button type="button" class="mui-btn mui-btn-royal">
-					紫色
-				</button>
+
+      
   </div>
 </template>
  
@@ -53,7 +41,21 @@ export default {};
 
 
 <style lang="scss" scoped>
+
 .app-container {
+  overflow-x: hidden; 
   padding-top: 40px;
+}
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.v-enter-active,.v-leave-active {
+  transition: all .3s ease;
 }
 </style>
