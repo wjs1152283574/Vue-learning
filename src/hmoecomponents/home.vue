@@ -8,42 +8,42 @@
 
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/newslist">
           <span class="mui-icon mui-icon-home"></span>
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/photos">
           <span class="mui-icon mui-icon-email">
             
           </span>
           <div class="mui-media-body">图片分享</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/shopping">
           <span class="mui-icon mui-icon-chatbubble"></span>
           <div class="mui-media-body">商品购买</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/coments">
           <span class="mui-icon mui-icon-location"></span>
           <div class="mui-media-body">留言反馈</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/medias">
           <span class="mui-icon mui-icon-search"></span>
           <div class="mui-media-body">视频专区</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/cantacts">
           <span class="mui-icon mui-icon-phone"></span>
           <div class="mui-media-body">联系我们</div>
-        </a>
+        </router-link>
       </li>
       
     </ul>
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getimg() {
-      this.$http.get("http://www.liulongbin.top:3005/api/getlunbo").then(
+      this.$http.get("api/getlunbo").then(
         result => {
           console.log(result.body);
           if (result.body.status === 0) {
