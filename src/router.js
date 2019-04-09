@@ -6,10 +6,10 @@ import Shopcar from './hmoecomponents/shopcar.vue'
 import Search from './hmoecomponents/search.vue'
 import Newlist from './home/newslist.vue'
 import Cantact from './home/cantacts.vue'
-import Coments from './home/coments.vue'
 import Medias from './home/medias.vue'
 import Photos from './home/photos.vue'
 import Shopping from './home/shopping.vue'
+import Newsinfo from './home/newsinfo.vue'
 
 var router = new VueRouter({
     routes:[
@@ -21,9 +21,9 @@ var router = new VueRouter({
         {path:'/home/newslist',component:Newlist},
         {path:'/home/photos',component:Photos},
         {path:'/home/shopping',component:Shopping},
-        {path:'/home/coments',component:Coments},
         {path:'/home/medias',component:Medias},
         {path:'/home/cantacts',component:Cantact},
+        {path:'/home/newsinfo/:id',component:Newsinfo}
     ],
     linkActiveClass:"mui-active"
 })

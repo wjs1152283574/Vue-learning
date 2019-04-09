@@ -15,7 +15,8 @@ Vue.use(Vueresource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005'  //配置根路径
 Vue.use(VueRouter)
 Vue.use(MintUI);
-import { Header } from 'mint-ui';
+import { Header,Button } from 'mint-ui';
+Vue.use(Button.name,Button)
 Vue.component(Header.name, Header);   //导入时间格式插件
 import moment from 'moment'
 //定义全局过滤器
