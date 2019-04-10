@@ -1,10 +1,10 @@
 <template>
   <div class="app-container" style="background-color:withe">
-    <mt-header fixed title="One Of Casso`s Objects"></mt-header>
+    <mt-header style="z-index:99;" fixed title="One Of Casso`s Objects"></mt-header>
 
-     <transition mode="out-in">
-        <router-view></router-view>
-     </transition>
+    <transition mode="out-in">
+      <router-view></router-view>
+    </transition>
 
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/home">
@@ -12,26 +12,22 @@
         <span class="mui-tab-label">首页</span>
       </router-link>
       <router-link class="mui-tab-item" to="/member">
-        <span class="mui-icon mui-icon-email">
-          
-        </span>
+        <span class="mui-icon mui-icon-email"></span>
         <span class="mui-tab-label">会员</span>
       </router-link>
 
       <router-link class="mui-tab-item" to="/shopcar">
         <span class="mui-icon mui-icon-contact">
-        <span class="mui-badge">0</span></span>
+          <span class="mui-badge">0</span>
+        </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
 
       <router-link class="mui-tab-item" to="search">
-        <span class="mui-icon mui-icon-contact">
-        </span>
+        <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
-
-      
   </div>
 </template>
  
@@ -41,9 +37,8 @@ export default {};
 
 
 <style lang="scss" scoped>
-
 .app-container {
-  overflow-x: hidden; 
+  overflow-x: hidden;
   padding-top: 40px;
   padding-bottom: 50px;
 }
@@ -51,12 +46,13 @@ export default {};
   opacity: 0;
   transform: translateX(100%);
 }
-.v-leave-to{
+.v-leave-to {
   opacity: 0;
   transform: translateX(-100%);
 }
 
-.v-enter-active,.v-leave-active {
-  transition: all .3s ease;
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
 }
 </style>
