@@ -12,7 +12,7 @@
             data-wid="tab-top-subpage-2.html"
             v-for="item in photolist"
             :key="item.id"
-            @click="getcontents(item.id)"
+            @tap="getcontents(item.id)"
           >{{item.title}}</a>
         </div>
       </div>

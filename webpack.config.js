@@ -30,8 +30,8 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.ttf$/,
-        use: ['url-loader', 'file-loader']
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        use: ['url-loader']
       },
       {
         test: /\.vue$/,

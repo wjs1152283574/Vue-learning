@@ -10,22 +10,59 @@ import Medias from './home/medias.vue'
 import Photos from './home/photos.vue'
 import Shopping from './home/shopping.vue'
 import Newsinfo from './home/newsinfo.vue'
+import Goodsinfo from './home/goodsinfo.vue'
 
 var router = new VueRouter({
-    routes:[
-        {path:'/', redirect:'/home'},
-        {path:'/home',component:Home},
-        {path:'/member',component:Menber},
-        {path:'/search',component:Search},
-        {path:'/shopcar',component:Shopcar},
-        {path:'/home/newslist',component:Newlist},
-        {path:'/home/photos',component:Photos},
-        {path:'/home/shopping',component:Shopping},
-        {path:'/home/medias',component:Medias},
-        {path:'/home/cantacts',component:Cantact},
-        {path:'/home/newsinfo/:id',component:Newsinfo}
-    ],
-    linkActiveClass:"mui-active"
+  routes: [{
+      path: '/',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      component: Home
+    },
+    {
+      path: '/member',
+      component: Menber
+    },
+    {
+      path: '/search',
+      component: Search
+    },
+    {
+      path: '/shopcar',
+      component: Shopcar
+    },
+    {
+      path: '/home/newslist',
+      component: Newlist
+    },
+    {
+      path: '/home/photos',
+      component: Photos
+    },
+    {
+      path: '/home/shopping',
+      component: Shopping
+    },
+    {
+      path: '/home/medias',
+      component: Medias
+    },
+    {
+      path: '/home/cantacts',
+      component: Cantact
+    },
+    {
+      path: '/home/newsinfo/:id',
+      component: Newsinfo
+    },
+    {
+      path: '/home/goodsinfo/:id',
+      component: Goodsinfo
+    }
+  ],
+  linkActiveClass: "mui-active"
 })
 
 export default router

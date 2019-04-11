@@ -6,6 +6,17 @@
       <span>发表时间：{{newsinfo.add_time | timeF}}</span>
       <span>点击：{{newsinfo.click}} 次</span>
     </p>
+    <hr>No images here....
+    <img
+      class="preview-img"
+      v-for="(item,index) in lists"
+      :src="item.src"
+      alt
+      height="100"
+      @click="$preview.open(index,list)"
+      :key="item.src"
+    >
+
     <div class="content" v-html="newsinfo.content"></div>
     <comments :id="id"></comments>
   </div>
@@ -17,11 +28,13 @@ export default {
   data() {
     return {
       id: this.$route.params.id, //获取ID
-      newsinfo: {}
+      newsinfo: {},
+      lists: []
     };
   },
   created() {
     this.getnewsinfos();
+    this.getImgs();
   },
   methods: {
     getnewsinfos() {
@@ -34,6 +47,25 @@ export default {
         },
         res => {
           Toast("获取新闻失败！");
+        }
+      );
+    },
+    getImgs() {
+      //console.log(123123);
+
+      this.$http.get("api/getthumimages/" + this.id).then(
+        res => {
+          if (res.body.status === 0) {
+            console.log(res.bodyText + 12);
+            res.body.message.forEach(item => {
+              item.w = 600;
+              item.h = 400;
+            });
+            this.lists = res.body.message;
+          }
+        },
+        res => {
+          console.log(66666666);
         }
       );
     }
