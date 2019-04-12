@@ -5,26 +5,38 @@
     </div>
 
     <div class="mui-card">
-      <div class="mui-card-header">页眉</div>
+      <div class="mui-card-header">{{goodsinfo.title}}</div>
       <div class="mui-card-content">
-        <div class="mui-card-content-inner">包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）</div>
+        <div class="mui-card-content-inner">
+          <p class="price">
+            市场价：
+            <del>￥{{goodsinfo.market_price}}</del> &nbsp;&nbsp;销售价:
+            <span class="now_price">￥{{goodsinfo.sell_price}}</span>
+          </p>
+          <p>
+            购买数量：
+            <numberBox></numberBox>
+          </p>
+          <P>
+            <mt-button type="primary" size="small">立即购买</mt-button>
+            <mt-button type="danger" size="small">加入购物车</mt-button>
+          </P>
+        </div>
       </div>
     </div>
 
     <div class="mui-card">
-      <div
-        class="mui-card-header mui-card-media"
-        style="height:40vw;background-image:url(../images/cbd.jpg)"
-      ></div>
+      <div class="mui-card-header">商品参数</div>
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
-          <p>Posted on January 18, 2016</p>
-          <p style="color: #333;">这里显示文章摘要，让读者对文章内容有个粗略的概念...</p>
+          <p>商品货号:{{goodsinfo.goods_no}}</p>
+          <p>库存情况:{{goodsinfo.stock_quantity}}</p>
+          <p>上架时间:{{goodsinfo.add_time | timeF}}</p>
         </div>
       </div>
       <div class="mui-card-footer">
-        <a class="mui-card-link">Like</a>
-        <a class="mui-card-link">Read more</a>
+        <mt-button type="primary" size="large" @click="goinfos(id)">图文介绍</mt-button>
+        <mt-button type="danger" size="large" @click="goincomment(id)">商品评论</mt-button>
       </div>
     </div>
   </div>
@@ -32,16 +44,19 @@
 
 <script>
 import swiper from "../hmoecomponents/swiper.vue";
+import numberBox from "./numberBox.vue";
 export default {
   data() {
     return {
       id: this.$route.params.id,
       lunboimgage: [],
-      flag: "true"
+      flag: "true",
+      goodsinfo: []
     };
   },
   created() {
     this.getLunbotu();
+    this.getgoodsinfo();
   },
   methods: {
     getLunbotu() {
@@ -56,10 +71,28 @@ export default {
         },
         res => {}
       );
+    },
+    getgoodsinfo() {
+      this.$http.get("api/goods/getinfo/" + this.id).then(
+        res => {
+          if (res.body.status === 0) {
+            this.goodsinfo = res.body.message[0];
+            console.log(res.bodyText);
+          }
+        },
+        res => {}
+      );
+    },
+    goincomment(id) {
+      this.$router.push({ name: "goodscomment", params: { id } });
+    },
+    goinfos(id) {
+      this.$router.push({ name: "goodsinfos", params: { id } });
     }
   },
   components: {
-    swiper
+    swiper,
+    numberBox
   }
 };
 </script>
@@ -68,5 +101,14 @@ export default {
 .goodsinfo-container {
   background-color: #ccc;
   overflow-y: hidden;
+}
+.mui-card-footer {
+  display: block;
+  button {
+    margin: 15px 0;
+  }
+}
+.now_price {
+  color: red;
 }
 </style>

@@ -11,6 +11,8 @@ import Photos from './home/photos.vue'
 import Shopping from './home/shopping.vue'
 import Newsinfo from './home/newsinfo.vue'
 import Goodsinfo from './home/goodsinfo.vue'
+import goinfos from './home/goodsinfos.vue'
+import goodscomments from './home/goodscomment.vue'
 
 var router = new VueRouter({
   routes: [{
@@ -60,6 +62,16 @@ var router = new VueRouter({
     {
       path: '/home/goodsinfo/:id',
       component: Goodsinfo
+    },
+    {
+      path: '/home/goodscomment/:id',
+      component: goodscomments,
+      name: "goodscomment"
+    },
+    {
+      path: '/home/goodsinfos/:id',
+      component: goinfos,
+      name: "goodsinfos"
     }
   ],
   linkActiveClass: "mui-active"
