@@ -1,12 +1,16 @@
 <template>
   <div>
-    12312313131321
-    ?????
+    <comments :id="$route.params.id"></comments>
   </div>
 </template>
 
 <script>
-export default {};
+import comments from "../puplicComponents/arguement.vue";
+export default {
+  components: {
+    comments
+  }
+};
 </script>
 
 <style lang="">

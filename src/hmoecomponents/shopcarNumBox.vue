@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mui-numbox" data-numbox-min="1" :data-numbox-max="max">
+    <div class="mui-numbox" data-numbox-min="1" data-numbox-max style="height:25px;">
       <!-- "-"按钮，点击可减小当前数值 -->
       <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
       <input @change="getVlue" class="mui-numbox-input" type="number" value="1" ref="numbers">
@@ -14,25 +14,14 @@
 import mui from "../lib/Mui/js/mui.min.js";
 export default {
   data() {
-    return {
-      counts: ""
-    };
+    return {};
   },
   mounted() {
     mui(".mui-numbox").numbox();
-    console.log(this.max + "123");
   },
   methods: {
     getVlue() {
       this.$emit("getCount", parseInt(this.$refs.numbers.value));
-    }
-  },
-  props: ["max"],
-  watch: {
-    max: function(nval, oval) {
-      mui(".mui-numbox")
-        .numbox()
-        .setOption("max", nval);
     }
   }
 };
