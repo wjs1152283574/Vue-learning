@@ -1,6 +1,10 @@
 <template>
   <div class="app-container" style="background-color:withe">
-    <mt-header style="z-index:99;" fixed title="One Of Casso`s Objects"></mt-header>
+    <mt-header style="z-index:99;" fixed title="One Of Casso`s Objects">
+      <span slot="left">
+        <mt-button icon="back" @click="goBack" v-show="flag">返回</mt-button>
+      </span>
+    </mt-header>
 
     <transition mode="out-in">
       <router-view></router-view>
@@ -32,7 +36,32 @@
 </template>
  
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      flag: ""
+    };
+  },
+  created() {
+    //路由不在首页位置，但是刷新了页面--路由地址并未改变，所以无法监听到，即需要在页面创建的时候也进行一次判断
+    this.flag = this.$route.path === "/home" ? false : true;
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1); //编程式导航
+    }
+  },
+  watch: {
+    "$route.path": function(nval) {
+      //监听路由地址：当路由回到首页的时候影藏“返回按钮”
+      if (nval === "/home") {
+        this.flag = false;
+      } else {
+        this.flag = true;
+      }
+    }
+  }
+};
 </script>  
 
 

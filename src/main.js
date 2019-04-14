@@ -51,6 +51,34 @@ var store = new Vuex.Store({ //全局注册注册一个Vuex实例 ---项目组�
         state.car.push(goodsinfo)
       };
       localStorage.setItem("car", JSON.stringify(state.car)); //商品数据存储到本地存储--需要转成字符串才可以存储到本地
+    },
+    updateGoodsInfo(state, goodsinfo) {
+      state.car.some(item => {
+        if (item.id == goodsinfo.id) {
+          item.count = parseInt(goodsinfo.count)
+          return true;
+        }
+      });
+      localStorage.setItem("car", JSON.stringify(state.car)); //商品数据存储到本地存储--需要转成字符串才可以存储到本地
+
+    },
+    remove(state, id) {
+      state.car.some((item, i) => {
+        if (item.id == id) {
+          state.car.splice(i, 1)
+          return true;
+        }
+      });
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    updateSelected(state, info) {
+      state.car.some(item => {
+        if (item.id == info.id) {
+          item.selected = info.selected;
+          return true;
+        }
+      });
+      localStorage.setItem("car", JSON.stringify(state.car));
     }
 
   },
@@ -62,6 +90,33 @@ var store = new Vuex.Store({ //全局注册注册一个Vuex实例 ---项目组�
         c += item.count;
       });
       return c;
+    },
+    getGoodsCount(state) {
+      var o = [];
+      state.car.forEach(item => {
+        o[item.id] = item.count;
+      });
+      return o;
+    },
+    getSelected(state) {
+      var o = {}
+      state.car.forEach(item => {
+        o[item.id] = item.selected
+      })
+      return o;
+    },
+    getGoodsCountAndCost(state) {
+      var o = {
+        count: 0, //勾选的数量
+        cost: 0 //勾选总价
+      };
+      state.car.forEach(item => {
+        if (item.selected) {
+          o.count += item.count;
+          o.cost += item.price * item.count;
+        }
+      });
+      return o;
     }
   }
 })

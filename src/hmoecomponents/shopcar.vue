@@ -1,31 +1,44 @@
 <template>
   <div class="shopcar-container">
     <div class="goodslist">
-      <div class="mui-card" v-for="item in getGoodsLists" :key="item.id">
+      <div class="mui-card" v-for="(item, index) in getGoodsLists" :key="item.id">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <mt-switch></mt-switch>
+            <!-- 以下v-modal是mintui里面提供的语法 --绑定一个布尔值-->
+            <mt-switch
+              v-model="$store.getters.getSelected[item.id]"
+              @change="selected(item.id,$store.getters.getSelected[item.id])"
+            ></mt-switch>
             <img :src="item.thumb_path" alt>
             <div class="info">
               <h1>{{item.title}}</h1>
-              <p>
+              <p class="innerp">
                 <span class="price">￥{{item.sell_price}}</span>
-                <shopcarNumBox></shopcarNumBox>
-                <a href="#">删除</a>
+                <shopcarNumBox :count="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></shopcarNumBox>
+                <a href="#" @click.prevent="delated(item.id,index)">删除</a>
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- <div class="mui-card">
+      <div class="mui-card">
         <div class="mui-card-content">
-          <div
-            class="mui-card-content-inner"
-          >这是一个最简单的卡片视图控件；卡片视图常用来显示完整独立的一段信息，比如一篇文章的预览图、作者信息、点赞数量等</div>
+          <div class="mui-card-content-inner jiesuan">
+            <div class="left">
+              <p>总计(不含运费)</p>
+              <p>
+                已勾选
+                <span class="red">{{$store.getters.getGoodsCountAndCost.count}}</span> 件，总价 ￥
+                <span class="red">{{$store.getters.getGoodsCountAndCost.cost}}</span>
+              </p>
+            </div>
+            <mt-button type="danger">去结算</mt-button>
+          </div>
         </div>
-      </div>-->
+      </div>
     </div>
+    {{$store.getters.getSelected}}
   </div>
 </template>
 
@@ -58,6 +71,15 @@ export default {
         },
         res => {}
       );
+    },
+    delated(id, index) {
+      this.getGoodsLists.splice(index, 1);
+      this.$store.commit("remove", id);
+    },
+    selected(id, val) {
+      //每当switch开关状态改变时，传入对应ID和状态值
+      //console.log(id + "----" + val);
+      this.$store.commit("updateSelected", { id: id, selected: val });
     }
   },
   components: {
@@ -74,9 +96,8 @@ export default {
     img {
       width: 60px;
       height: 60px;
-     
     }
-    p {
+    .innerp {
       display: flex;
       justify-content: space-between;
       margin-bottom: 2px;
@@ -96,6 +117,14 @@ export default {
   .mui-card-content-inner {
     display: flex;
     align-items: center;
+    // justify-content: space-between;
   }
+}
+.jiesuan {
+  display: flex;
+  justify-content: space-between;
+}
+.red {
+  color: red;
 }
 </style>
