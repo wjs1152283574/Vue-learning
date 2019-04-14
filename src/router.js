@@ -13,11 +13,15 @@ import Newsinfo from './home/newsinfo.vue'
 import Goodsinfo from './home/goodsinfo.vue'
 import goinfos from './home/goodsinfos.vue'
 import goodscomments from './home/goodscomment.vue'
-
+import arguement from './puplicComponents/arguement.vue'
 var router = new VueRouter({
   routes: [{
       path: '/',
       redirect: '/home'
+    },
+    {
+      path: "/home/arguement",
+      component: arguement
     },
     {
       path: '/home',
